@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RRMS - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f0f2f5;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero {
+      background: linear-gradient(to right, #0d6efd, #4d9efc);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      transition: background 0.3s ease-in-out;
+    }
+
+    .hero:hover {
+      background: linear-gradient(to right, #0056c1, #0077ff);
+    }
+
+    .hero h1:hover {
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      transform: scale(1.02);
+      transition: all 0.3s ease;
+    }
+
+    .card {
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 2px solid #0d6efd;
+    }
+
+    .form-control,
+    .form-select {
+      border: 2px solid #0d6efd;
+      transition: border 0.3s;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      border-color: #0048c8;
+      box-shadow: 0 0 5px rgba(13, 110, 253, 0.5);
+    }
+
+    .btn-primary {
+      background-color: #0d6efd;
+      border: none;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056c1;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    iframe {
+      width: 100%;
+      border: none;
+      height: 300px;
+      margin-top: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      background-color: #0d6efd;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    #about {
+      background-color: #ffffff;
+      padding: 40px 20px;
+      margin-top: 40px;
+      border-top: 1px solid #dee2e6;
+    }
+
+    #about h2 {
+      color: #0d6efd;
+    }
+
+    .social-icons a {
+      font-size: 1.5rem;
+      color: #0d6efd;
+      margin: 0 10px;
+      transition: color 0.3s ease-in-out;
+    }
+
+    .social-icons a:hover {
+      color: #0056c1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+    <div class="container">
+      <a class="navbar-brand text-primary fw-bold" href="#"><h1>RRMS</h1> </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>Room Rental Mentor System (RRMS)</h1>
+    <p>Find and rent verified rooms easily and securely</p>
+  </div>
+
+  <!-- Filters -->
+  <div class="container mt-4">
+    <div class="row mb-4">
+      <div class="col-md-4">
+        <input type="text" class="form-control" id="searchLocation" placeholder="Search by Location" />
+      </div>
+      <div class="col-md-4">
+        <select class="form-select" id="filterType">
+          <option value="">Room Type</option>
+          <option value="single">Single</option>
+          <option value="shared">Shared</option>
+          <option value="apartment">Apartment</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <input type="number" class="form-control" id="filterPrice" placeholder="Max Price" />
+      </div>
+    </div>
+
+    <!-- Room Cards -->
+    <div class="row" id="roomCards"></div>
+
+    <!-- Map -->
+   <iframe id="mapFrame"
+  src="https://maps.google.com/maps?q=28.030821,82.451909&z=13&output=embed"
+  allowfullscreen
+  loading="lazy"
+  referrerpolicy="no-referrer-when-downgrade">
+</iframe>
+
+  </div>
+
+  <!-- About Us -->
+  <div id="about" class="container">
+    <h2 class="text-center mb-4">About Us</h2>
+    <p class="text-center">Room Rental Mentor System (RRMS) helps people easily find verified rooms for rent with trusted listings, transparent pricing, and secure communication.</p>
+
+    <div id="contact" class="text-center mt-4">
+      <p><strong>Contact us:</strong> support@rrms.com</p>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank"><i class="bi bi-facebook"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank"><i class="bi bi-linkedin"></i></a>
+        <a href="https://github.com" target="_blank"><i class="bi bi-github"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Room Rental Mentor System (RRMS). All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+<script>
+  const rooms = [
+    { title: "Single Room in Sarra", location: "Sarra", price: 3000, type: "single", image: "aaa.jpg", lat: 28.031040, lng: 82.452303 },
+    { title: "Shared Flat in Ratanpur", location: "Ratanpur", price: 3500, type: "shared", image: "sss.jpg", lat: 28.026895, lng: 82.472371 },
+    { title: "Studio in Naya Bazzar", location: "Naya Bazzar", price: 5000, type: "apartment", image: "bbb.jpg", lat: 28.044110, lng: 82.489508 },
+    { title: "Spacious Apartment in Ghorahi", location: "Ghorahi", price: 6000, type: "apartment", image: "apartment1.jpg", lat: 28.004, lng: 82.486 },
+    { title: "Cozy Shared Room in Lamahi", location: "Lamahi", price: 2800, type: "shared", image: "shared1.jpg", lat: 27.974, lng: 82.301 },
+    { title: "Modern Single Room in Tulsipur", location: "Tulsipur", price: 3200, type: "single", image: "single1.jpg", lat: 28.131, lng: 82.297 },
+    { title: "Shared Room in Bijauri", location: "Bijauri", price: 2700, type: "shared", image: "shared2.jpg", lat: 27.943, lng: 82.531 },
+    { title: "Luxury Apartment in Dang", location: "Dang", price: 7000, type: "apartment", image: "apartment2.jpg", lat: 28.055, lng: 82.301 },
+    { title: "Economy Single Room in Salyan", location: "Salyan", price: 2500, type: "single", image: "single2.jpg", lat: 28.376, lng: 82.161 }
+  ];
+
+  const container = document.getElementById("roomCards");
+  const mapFrame = document.querySelector("iframe");
+
+  function displayRooms(data) {
+    container.innerHTML = "";
+    if (data.length === 0) {
+      container.innerHTML = `<div class="col-12 text-center"><p class="text-muted">No rooms found matching your criteria.</p></div>`;
+      return;
+    }
+
+    data.forEach(room => {
+      const card = document.createElement('div');
+      card.className = "col-md-4 mb-4 fade-in";
+      card.innerHTML = `
+        <div class="card shadow-sm">
+          <img src="${room.image}" class="card-img-top" alt="Room Image">
+          <div class="card-body">
+            <h5 class="card-title">${room.title}</h5>
+            <p class="card-text">Location: ${room.location}</p>
+            <p class="card-text">Price: Rs. ${room.price}</p>
+            <button class="btn btn-primary" onclick='showLocationRooms("${room.location}", ${room.lat}, ${room.lng})'>View Details</button>
+          </div>
+        </div>`;
+      container.appendChild(card);
+    });
+  }
+
+  function filterRooms() {
+    const location = document.getElementById("searchLocation").value.toLowerCase();
+    const type = document.getElementById("filterType").value;
+    const price = parseInt(document.getElementById("filterPrice").value);
+
+    const filtered = rooms.filter(r => {
+      const matchesLocation = !location || r.location.toLowerCase().includes(location);
+      const matchesType = !type || r.type === type;
+      const matchesPrice = !price || r.price <= price;
+      return matchesLocation && matchesType && matchesPrice;
+    });
+
+    displayRooms(filtered);
+  }
+
+  function showLocationRooms(location, lat, lng) {
+    const filtered = rooms.filter(r => r.location === location);
+    displayRooms(filtered);
+    updateMap(lat, lng);
+  }
+
+  function updateMap(lat, lng) {
+    const zoom = 14;
+    const mapURL = `https://maps.google.com/maps?q=${lat},${lng}&z=${zoom}&output=embed`;
+    mapFrame.src = mapURL;
+  }
+
+  document.getElementById("searchLocation").addEventListener("input", filterRooms);
+  document.getElementById("filterType").addEventListener("change", filterRooms);
+  document.getElementById("filterPrice").addEventListener("input", filterRooms);
+
+  displayRooms(rooms);
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
